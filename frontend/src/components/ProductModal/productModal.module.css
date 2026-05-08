@@ -1,0 +1,375 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slideDown 0.4s ease forwards;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 1px 20px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.247);
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.closeButton:hover {
+  color: #333;
+}
+
+.form {
+  padding: 23px;
+}
+
+.formGroup {
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.formRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.formGroup select option[value=""] {
+  color: #999;
+  font-style: italic;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancelButton,
+.saveButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.cancelButton {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.cancelButton:hover {
+  background-color: #e0e0e0;
+}
+
+.saveButton {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.saveButton:hover {
+  background-color: #1a252f;
+}
+
+.saveButton:disabled,
+.cancelButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  padding: 8px 16px;
+  margin: 8px 16px 0;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Image Upload Styles */
+.imageUploadContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding: 8px;
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+  border-radius: 8px;
+  border: 2px dashed #e2e8f0;
+  margin-bottom: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+  align-items: stretch;
+}
+
+.imageUploadContainer:hover {
+  border-color: #2c3e50;
+  background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.uploadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: none;
+  box-shadow: none;
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.uploadSection:hover {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1);
+}
+
+.previewSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  width: 160px;
+  justify-content: center;
+  align-items: center;
+}
+
+.previewSection:hover {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1);
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.sectionTitle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 14px;
+  background: #4a90e2;
+  border-radius: 2px;
+}
+
+.fileInput {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #64748b;
+  transition: all 0.3s ease;
+  outline: none;
+  text-align: center;
+  position: relative;
+}
+
+.fileInput::before {
+  content: "📸 Click or drag image here";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #64748b;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.fileInput:hover::before {
+  color: #2c3e50;
+}
+
+.imagePreviewContainer {
+  position: relative;
+  display: grid;
+}
+
+.imagePreview {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.uploadIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #f8fafc;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  color: #1a252f;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.uploadIcon:hover {
+  background: #f0f7ff;
+  border-color: #4a90e2;
+  transform: translateY(-1px);
+}
+
+.uploadText {
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 4px;
+  line-height: 1.4;
+  padding: 4px;
+  background: #f8fafc;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+}
+
+.deleteImageButton {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.deleteImageButton:hover {
+  background-color: #ff1111;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .imageUploadContainer {
+    padding: 15px;
+  }
+
+  .fileInput {
+    padding: 20px 15px;
+  }
+
+  .fileInput::before {
+    font-size: 14px;
+  }
+
+  .imagePreview {
+    max-width: 100%;
+  }
+}

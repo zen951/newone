@@ -1,0 +1,408 @@
+/* productTable.module.css */
+
+.tableContainer {
+  margin-top: 1rem;
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+}
+
+.productTable {
+  width: 100%;
+  min-width: 750px; /* Ensures table doesn't get too cramped on small screens */
+  border-collapse: collapse;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+}
+
+.productTable th {
+  text-align: center;
+  padding: 15px 5px;
+  background-color: rgba(0, 119, 255, 0.089);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.productTable tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.productTable tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.productTable th:hover {
+  background-color: rgba(5, 84, 173, 0.178);
+}
+
+.sortIcons {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  top: 2px;
+}
+
+.sortIcons svg {
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.inactiveIcon {
+  color: #5c5c5c;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.activeIcon {
+  color: #265aad;
+  opacity: 1;
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
+
+.productTable td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+  height: 76px;
+  line-height: 1.2;
+  transition: all 0.2s ease;
+  word-break: break-word; /* Prevents text from overflowing */
+}
+
+/* Add hover effect for table rows */
+.productTable tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.productTable tbody tr:hover {
+  background-color: rgba(0, 119, 255, 0.082);
+}
+
+.productImage {
+  text-align: center;
+}
+
+.productImage img {
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.noImage {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin: 0 auto;
+}
+
+.categoryBadge {
+  display: inline-block;
+  width: fit-content;
+  padding: 6px 12px;
+  background-color: #e0f2fe;
+  border-radius: 9999px;
+  color: #0369a1;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.price {
+  color: #047857;
+  font-weight: 600;
+}
+
+.stockBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.lowStock {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.mediumStock {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.inStock {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+
+.actions {
+  text-align: center;
+}
+
+.editButton,
+.deleteButton {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+}
+
+.editButton {
+  background-color: #dbeafe;
+  color: #1e40af;
+  transition: background-color 0.2s;
+}
+
+.editButton:hover {
+  background-color: #bfdbfe;
+}
+
+.deleteButton {
+  background-color: #fee2e2;
+  color: #991b1b;
+  transition: background-color 0.2s;
+}
+
+.deleteButton:hover {
+  background-color: #fecaca;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.noResults {
+  text-align: center;
+  padding: 3rem;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  color: #6b7280;
+  font-size: 1rem;
+  border: 2px dashed #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #f9fafb;
+}
+
+.filterInfo {
+  margin-bottom: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+/* Column-specific alignments */
+.nameColumn {
+  max-width: 140px;
+}
+
+.productImage {
+  margin: 10px 0;
+}
+
+/* Ensure badges are centered in their cells */
+td .categoryBadge {
+  border: 1px solid;
+}
+
+@media screen and (max-width: 1024px) {
+  .productTable {
+    font-size: 0.9rem;
+  }
+
+  .productTable td {
+    padding: 8px 12px;
+    height: 70px;
+  }
+
+  .productImage img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tableContainer {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .productTable {
+    font-size: 0.85rem;
+  }
+
+  .productTable th {
+    padding: 12px 4px;
+    font-size: 0.85rem;
+  }
+
+  .productTable td {
+    padding: 6px 10px;
+    height: 65px;
+  }
+
+  .productImage img,
+  .noImage {
+    width: 70px;
+    height: 70px;
+  }
+
+  .categoryBadge,
+  .stockBadge {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+
+  td .categoryBadge {
+    width: 90%;
+  }
+
+  .nameColumn {
+    max-width: 100px;
+  }
+
+  .supplierColumn {
+    max-width: 80px;
+  }
+}
+
+/* Add touch-friendly spacing on mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .productTable td,
+  .productTable th {
+    padding: 12px 10px; /* Larger touch targets */
+  }
+
+  .productTable tbody tr:hover {
+    background-color: transparent; /* Remove hover effect on touch devices */
+  }
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.paginationButton {
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.paginationButton:hover:not(:disabled) {
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  background-color: rgba(0, 119, 255, 0);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f9fafb;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pageNumber {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pageNumber:hover:not(:disabled):not(.activePage) {
+  background-color: #f3f4f6;
+  background-color: rgba(0, 119, 255, 0.082);
+  transform: translateY(-1px);
+}
+
+.pageNumber:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f9fafb;
+}
+
+.activePage {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  cursor: default;
+}
+
+.activePage:hover {
+  transform: none;
+}
+
+/* Responsive styles for pagination */
+@media screen and (max-width: 640px) {
+  .pagination {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .paginationButton {
+    padding: 0.5rem 1rem;
+    min-width: 80px;
+    font-size: 0.75rem;
+  }
+
+  .pageNumber {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+}
