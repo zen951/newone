@@ -8,12 +8,12 @@ const dbSingleton = {
     if (!connection) {
       // Create a connection only once
       connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'techStock',
+        host: process.env.MYSQLHOST || "localhost",
+        user: process.env.MYSQLUSER || "root",
+        password: process.env.MYSQLPASSWORD || "",
+        database: process.env.MYSQLDATABASE || "techStock",
+        port: process.env.MYSQLPORT || 3306,
       });
-
       // Connect to the database
       connection.connect(err => {
         if (err) {
