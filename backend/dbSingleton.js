@@ -1,38 +1,31 @@
-//dbSingleton.js
-const mysql = require('mysql2');
+const mysql = require("mysql2");
 
-let connection; // Variable for storing a single connection
+let connection;
 
 const dbSingleton = {
   getConnection: () => {
     if (!connection) {
-      // Create a connection only once
-      connection = mysql.createConnection({
-        host: process.env.MYSQLHOST || "localhost",
-        user: process.env.MYSQLUSER || "root",
-        password: process.env.MYSQLPASSWORD || "",
-        database: process.env.MYSQLDATABASE || "techStock",
-        port: process.env.MYSQLPORT || 3306,
-      });
-      // Connect to the database
-      connection.connect(err => {
+      // Railway MySQL uses a single connection URL
+      connection = mysql.createConnection(process.env.MYSQL_URL);
+
+      connection.connect((err) => {
         if (err) {
-          console.error('Error connecting to database:', err);
-          throw err;
+          console.error("Error connecting to database:", err);
+          return;
         }
-        console.log('Connected to MySQL!');
+        console.log("Connected to MySQL!");
       });
 
-      // Handle connection errors
-      connection.on('error', err => {
-        console.error('Database connection error:', err);
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-          connection = null; // Update the connection state
+      connection.on("error", (err) => {
+        console.error("Database connection error:", err);
+
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+          connection = null;
         }
       });
     }
 
-    return connection; // Return the current connection
+    return connection;
   },
 };
 
